@@ -27,8 +27,25 @@ final class AppModel {
     /// 実センサーからの値を使っているか。false ならモック
     private(set) var usingRealSensor = false
 
+    /// 土壌水分以外の仮の値（気温・湿度・光量・EC・pH）。説明員用のパネルから動かす（D64-b）
+    var environment = MockEnvironment.initial
+
+    /// 最後に水をあげた時刻。センサーの枠に「最後の水やり」として出す
+    private(set) var lastWateredAt: Date?
+
+    /// モックで乾いていく速さ（%/秒）。実センサーが繋がれば使わない。
+    ///
+    /// 実際の植物は数日かけて乾くが、来場者が数分で変化を体感できる必要がある。
+    /// ただし速すぎると説明を聞いている間に危険域まで落ちる。
+    /// 水やり後（約60%）から適正の下限（25%）まで、およそ60秒かかる速さ。
+    /// センサーの枠の「次の水やり」もこの速さで見積もる
+    static let mockDryingRate: Double = 0.6
+
     /// センサー中継サーバーからの取得。繋がらなくてもアプリは成立する
     let sensor = SensorClient()
+
+    /// 電池と熱と、重い処理の回数（非機能要件 §2.3）。説明員用のパネルの「AR の診断」に出す
+    let energy = EnergyMonitor()
 
     /// 植物・観察・日記。展示では永続化しない（D36）
     let store: PlantStore
@@ -185,6 +202,7 @@ final class AppModel {
         } else if value < Self.alreadyMoistFloor {
             consecutiveWatering = false
         }
+        if jumped { lastWateredAt = Date() }
         lastMoisture = value
         soilMoisture = value
         // 育成のグラフの素材として、いま見ている株に積む（D44）
@@ -217,6 +235,14 @@ final class AppModel {
             forSoilMoisture: soilMoisture, consecutiveWatering: consecutiveWatering)
     }
 
+    /// いま話す帯域と、それが反応している値（D64-b）。
+    /// 土壌水分 → 光 → 気温 → 湿度の順に、見ている株の適正範囲から外れているものを話す
+    func currentCondition() -> DialogueBank.Condition? {
+        bank?.condition(
+            soilMoisture: soilMoisture, consecutiveWatering: consecutiveWatering,
+            environment: environment, profile: profile(for: store.selectedPlant))
+    }
+
     func greeting() -> String? {
         guard let bank else { return nil }
         return picker.pick(from: bank.greetings, group: "greeting")
@@ -235,5 +261,7 @@ final class AppModel {
         lastMoisture = Self.initialSoilMoisture
         consecutiveWatering = false
         usingRealSensor = false
+        environment = .initial
+        lastWateredAt = nil
     }
 }
