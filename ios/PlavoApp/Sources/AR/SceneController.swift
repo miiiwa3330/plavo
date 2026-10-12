@@ -1525,10 +1525,13 @@ extension SceneController {
     }
 
     /// デモカメラで札を見つけたことにする（`-demoSensorTag YES`）。
+    /// 紹介動画の台本でセンサーを鉢に刺すとき（`-demoSensor`）は、**刺したところから**見つけたことにする。
+    /// 刺す前から見つかっていると、つまみが先に緑になり、刺すと値が見られる流れに見えない
     ///
     /// 出し入れの間は実機と同じ `SensorTagTracker` を通す
     fileprivate func updateDemoSensorTag(now: TimeInterval) {
-        guard DemoCamera.showsSensorTag, subject == .plant else {
+        let inserted = DemoCamera.sensorImage != nil && DemoStage.shared.sensorDrop >= 1
+        guard DemoCamera.showsSensorTag || inserted, subject == .plant else {
             if sensorTagVisible { clearSensorTag() }
             return
         }

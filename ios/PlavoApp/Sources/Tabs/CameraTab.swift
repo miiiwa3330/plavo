@@ -100,9 +100,10 @@ struct CameraTab: View {
                 // 画面全体（弧・シャッター・直近の1枚）を作り直すことになる
                 BubbleLayer(scene: scene, line: line)
 
-                if isNaming { namingField }
-
                 overlay.ignoresSafeArea(.keyboard)
+                // **名前の入力欄は長押しの層（overlay）より上に重ねる。**
+                // 長押しの層は画面のほぼ全体で指を受けるので、下に置くと「はじめる」が押せなかった
+                if isNaming { namingField }
                 // 名前を入れている間は出さない。撮る場面ではないし、
                 // タブバーを退けたぶんだけ下にずれて見える
                 if pendingCapture == nil, !isNaming {
