@@ -55,36 +55,36 @@ export const acts: Act[] = [
     bar: 2,
     clips: [
       // 誰も選ばれていないので、映像がぼけている（D52）
-      { source: "camera", from: 14.9, to: 16.9, narration: "新しい子を、迎えましょう。" },
+      { source: "camera", from: 12.2, to: 14.2, narration: "新しい子を、迎えましょう。" },
       // シャッターを「迎える」へ滑らせる
       {
-        source: "camera", from: 16.9, to: 18.0, narration: "新しい子を、迎えましょう。",
-        zoom: [{ x: 250, y: 700, scale: 1.55 }], sfx: [{ at: 17.2, name: "tap", volume: 0.5 }],
+        source: "camera", from: 14.2, to: 15.3, narration: "新しい子を、迎えましょう。",
+        zoom: [{ x: 250, y: 700, scale: 1.55 }], sfx: [{ at: 14.5, name: "tap", volume: 0.5 }],
       },
-      { source: "camera", from: 18.4, to: 19.5, narration: "新しい子を、迎えましょう。", sfx: [{ at: 18.65, name: "tap", volume: 0.5 }] },
+      { source: "camera", from: 15.7, to: 16.8, narration: "新しい子を、迎えましょう。", sfx: [{ at: 15.95, name: "tap", volume: 0.5 }] },
       // 撮る → その1枚で止まり、植物に枠
       {
-        source: "camera", from: 20.0, to: 21.4, narration: "カメラで見つけて",
-        zoom: [{ x: 201, y: 450, scale: 1.2, at: 21.0 }], sfx: [{ at: 20.45, name: "shutter" }],
+        source: "camera", from: 17.55, to: 18.95, narration: "カメラで見つけて",
+        zoom: [{ x: 201, y: 450, scale: 1.2, at: 18.55 }], sfx: [{ at: 18.0, name: "shutter" }],
       },
-      { source: "camera", from: 21.4, to: 23.8, narration: "カメラで見つけて" },
+      { source: "camera", from: 18.95, to: 21.35, narration: "カメラで見つけて" },
       // 「話しかける」→ 名前の入力
       {
-        source: "camera", from: 24.0, to: 25.5, narration: "名前をつけたら",
-        zoom: [{ x: 250, y: 740, scale: 1.35 }, { x: 201, y: 330, scale: 1.5, at: 25.0 }],
-        sfx: [{ at: 24.3, name: "tap" }],
+        source: "camera", from: 21.65, to: 23.15, narration: "名前をつけたら",
+        zoom: [{ x: 250, y: 740, scale: 1.35 }, { x: 201, y: 330, scale: 1.5, at: 22.65 }],
+        sfx: [{ at: 21.95, name: "tap" }],
       },
-      { source: "camera", from: 25.5, to: 26.7, narration: "名前をつけたら" },
-      { source: "camera", from: 28.0, to: 30.2, narration: "名前をつけたら" },
+      { source: "camera", from: 23.15, to: 24.35, narration: "名前をつけたら" },
+      { source: "camera", from: 25.4, to: 27.6, narration: "名前をつけたら" },
       // 「はじめる」→ 話しかけてくる（台本の最初は「やあ」）
       {
-        source: "camera", from: 30.2, to: 31.2, narration: "話しかけてきます。",
+        source: "camera", from: 27.6, to: 28.6, narration: "話しかけてきます。",
         // ここから「あったかい、ありがとう」までは寄らない。セリフのたびに寄り先が移ると、
         // 画面があちこちへ動いて見づらい。名前の入力欄から引いて、全体を見せたままにする
-        zoom: [whole(30.3)],
-        sfx: [{ at: 30.45, name: "tap" }, { at: 30.85, name: "chime" }],
+        zoom: [whole(27.7)],
+        sfx: [{ at: 27.85, name: "tap" }, { at: 28.2, name: "chime" }],
       },
-      { source: "camera", from: 31.2, to: 31.9, narration: "話しかけてきます。" },
+      { source: "camera", from: 28.6, to: 29.2, narration: "話しかけてきます。" },
     ],
   },
   {
@@ -93,37 +93,37 @@ export const acts: Act[] = [
     name: "話す",
     bar: 11,
     clips: [
-      // 区切りは録画の中でセリフが変わる時刻に合わせる（お水欲しいな 32.0 → 気持ち良い 36.2 →
-      // 日向ぼっこしたい 40.4 → あったかい 44.4）。語り手とキャラクターの一言がセリフと食い違わないように
-      { source: "camera", from: 31.9, to: 36.1, narration: "困っている時には" },
+      // 区切りは録画の中でセリフが変わる時刻に合わせる（お水欲しいな 29.3 → 気持ち良い 33.3 →
+      // 日向ぼっこしたい 37.5 → あったかい 41.5）。語り手とキャラクターの一言がセリフと食い違わないように
+      { source: "camera", from: 29.2, to: 33.2, narration: "困っている時には" },
       // 水をあげたことにする（台本）。しずくは動画の側で重ねる
       {
-        source: "camera", from: 36.1, to: 40.3, narration: "困っている時には",
-        water: 36.1, sfx: [{ at: 36.15, name: "water" }],
+        source: "camera", from: 33.2, to: 37.4, narration: "困っている時には",
+        water: 33.2, sfx: [{ at: 33.25, name: "water" }],
       },
       // 日陰で「もう少しだけ日向ぼっこしたい」→ 日向へ →「あったかい、ありがとう」。
       // 映像の明るさはアプリの側（DemoStage）、差し込む光の筋は動画の側で重ねる
-      { source: "camera", from: 40.3, to: 44.3, narration: "助けてあげましょう。" },
+      { source: "camera", from: 37.4, to: 41.4, narration: "助けてあげましょう。" },
       {
-        source: "camera", from: 44.3, to: 48.2, narration: "助けてあげましょう。",
-        sun: 44.4, sfx: [{ at: 44.5, name: "sun" }],
+        source: "camera", from: 41.4, to: 45.1, narration: "助けてあげましょう。",
+        sun: 41.5, sfx: [{ at: 41.6, name: "sun" }],
       },
-      // センサーを鉢に刺す（D64）。刺さり始め 48.7・刺さり切り 49.3。刺さってから引くまでの待ちは切る
+      // センサーを鉢に刺す（D64）。刺さり始め 45.6・刺さり切り 46.3（つまみが緑になるのは 47.0）。刺さってから引くまでの待ちは切る
       {
-        source: "camera", from: 48.2, to: 51.7, narration: "センサーを刺すと、",
-        zoom: [{ x: 225, y: 600, scale: 1.4, at: 48.3 }], sfx: [{ at: 49.25, name: "insert" }],
+        source: "camera", from: 45.1, to: 48.6, narration: "センサーを刺すと、",
+        zoom: [{ x: 225, y: 600, scale: 1.4, at: 45.2 }], sfx: [{ at: 46.25, name: "insert" }],
       },
-      // 右端のつまみを左へ引く（53.1〜54.0）→ 値を見る → 右へ払って閉じる（59.2〜59.8）
+      // 右端のつまみを左へ引く（49.3〜50.0）→ 値を見る → 右へ払って閉じる（55.5〜56.0）
       {
-        source: "camera", from: 52.9, to: 60.1, narration: "今の状態を詳しく見られます。",
-        zoom: [{ x: 240, y: 420, scale: 1.2, at: 53.2 }, whole(59.0)],
-        sfx: [{ at: 53.1, name: "tap" }, { at: 59.2, name: "tap", volume: 0.5 }],
+        source: "camera", from: 49.1, to: 56.3, narration: "今の状態を詳しく見られます。",
+        zoom: [{ x: 240, y: 420, scale: 1.2, at: 49.4 }, whole(55.3)],
+        sfx: [{ at: 49.3, name: "tap" }, { at: 55.5, name: "tap", volume: 0.5 }],
       },
       // 撮る。画面の下（シャッター・左下の枠・「日記に追加しました」）へ寄る
       {
-        source: "camera", from: 60.6, to: 63.1, narration: "写真を撮ると、日記へ追加されます。",
-        zoom: [{ x: 201, y: 690, scale: 1.45, at: 60.7 }],
-        sfx: [{ at: 61.9, name: "shutter" }],
+        source: "camera", from: 56.85, to: 59.35, narration: "写真を撮ると、日記へ追加されます。",
+        zoom: [{ x: 201, y: 690, scale: 1.45, at: 56.95 }],
+        sfx: [{ at: 58.15, name: "shutter" }],
       },
     ],
   },
@@ -184,7 +184,7 @@ export const acts: Act[] = [
  */
 export const overview: { source: Source; from: number; to: number }[] = [
   // カメラはセンサーの枠を開いているところ（D64）
-  { source: "camera", from: 54.0, to: 57.0 },
+  { source: "camera", from: 50.1, to: 53.1 },
   { source: "tour", from: 20.6, to: 24.2 },
   { source: "flipbook", from: 13.8, to: 16.6 },
   { source: "tour", from: 49.9, to: 52.2 },
